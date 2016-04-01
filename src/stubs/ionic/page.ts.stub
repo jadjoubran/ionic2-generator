@@ -1,0 +1,14 @@
+import {Page} from "ionic-angular";
+
+@Page({
+    templateUrl: "",
+    directives: []
+})
+
+export class {{StudlyName}}Page{
+    constructor(){
+
+    }
+
+
+}

@@ -1,0 +1,14 @@
+import {Page, NavController} from "ionic-angular";
+
+@Page({
+    templateUrl: "",
+    directives: []
+})
+
+export class {{StudlyName}}Page{
+    constructor(public nav: NavController, ){
+
+    }
+
+
+}
