@@ -41,11 +41,7 @@
     "no-mixed-spaces-and-tabs": [2],
     "no-console": 0
   },
-  "globals": {
-    "require": true
-  },
   "env": {
-    "es6": true,
     "node": true
   },
   "parserOptions": {
