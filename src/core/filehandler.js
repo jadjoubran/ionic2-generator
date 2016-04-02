@@ -4,27 +4,31 @@ var _ = require("lodash");
 
 module.exports = {
   createPage: (featureName, filePath, generatedType) => {
+    "use strict";
+
     var stubContent = '';
 
     stubContent = fs.readFileSync(`src/stubs/ionic/${generatedType}.ts.stub`, 'utf8');
 
     var generatedContent = stubContent.replace("{{StudlyName}}", _.capitalize(featureName));
 
-    window.console.log(`Creating file in ${filePath}/`);
+    console.log(`Creating file in ${filePath}/`);
 
     fs.writeFile(`${filePath}/${featureName}.ts`, generatedContent, function(error) {
-      window.console.log(error);
+      console.log(error);
     });
   },
 
   createComponent: (featureName, filePath) => {
+    "use strict";
+
     if (!fsExtra.exists(`${filePath}`)) {
-      window.console.log("Directory doesnt' exist!", filePath);
+      console.log("Directory doesnt' exist!", filePath);
       return false;
     }
 
     if (fsExtra.exists(`${filePath}/${featureName}`)) {
-      window.console.log("Directory already exists!", `${filePath}/${featureName}`);
+      console.log("Directory already exists!", `${filePath}/${featureName}`);
       return false;
     }
 
@@ -37,10 +41,10 @@ module.exports = {
     let generatedContent = stubContent.replace("{{StudlyName}}", _.capitalize(featureName));
 
     let creatingPath = `${filePath}/${featureName}/${featureName}`;
-    window.console.log(`Creating file in ${creatingPath}`);
+    console.log(`Creating file in ${creatingPath}`);
 
     fs.writeFile(`${creatingPath}.ts`, generatedContent, function(error) {
-      window.console.log(error);
+      console.log(error);
     });
 
     fsExtra.copy('src/stubs/angular/component/component.sass.stub', `${creatingPath}.sass`);
