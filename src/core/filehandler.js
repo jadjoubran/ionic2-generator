@@ -5,46 +5,51 @@ var _ = require("lodash");
 "use strict";
 
 module.exports = {
-    createPage: (featureName, filePath, generatedType) => {
-      "use strict";
+  createPage: (featureName, filePath, generatedType) => {
+    "use strict";
 
-      var stubContent = '';
+    var stubContent = '';
 
-      stubContent = fs.readFileSync(`src/stubs/ionic/${generatedType}.ts.stub`, 'utf8');
+    stubContent = fs.readFileSync(`src/stubs/ionic/${generatedType}.ts.stub`, 'utf8');
 
-      var generatedContent = stubContent.replace("{{StudlyName}}", _.capitalize(featureName));
+    var generatedContent = stubContent.replace("{{StudlyName}}", _.capitalize(featureName));
 
-      console.log(`Creating file in ${filePath}/`);
+    console.log(`Creating file in ${filePath}/`);
 
-      fs.writeFile(`${filePath}/${featureName}.ts`, generatedContent, function(error) {
-        console.log(error);
-      });
-    },
+    fs.writeFile(`${filePath}/${featureName}.ts`, generatedContent, function(error) {
+      console.log(error);
+    });
+  },
 
-    createComponent: (featureName, filePath) => {
-      "use strict";
+  createComponent: (featureName, filePath) => {
+    "use strict";
 
-      if (fsExtra.exists(`${filePath}/${featureName}`)) {
-          console.log("Directory already exists!");
-          return false;
-        }
+    if (!fsExtra.exists(`${filePath}`)) {
+      console.log("Directory doesnt' exist!", filePath);
+      return false;
+    }
 
-        fs.mkdirSync(`${filePath}/${featureName}`, 755);
+    if (fsExtra.exists(`${filePath}/${featureName}`)) {
+      console.log("Directory already exists!", `${filePath}/${featureName}`);
+      return false;
+    }
 
-        let stubContent = fs.readFileSync(`src/stubs/angular/component/component.ts.stub`, 'utf8');
-        // let stubContentHTML = fs.readFileSync(`src/stubs/angular/component.html.stub`, 'utf8');
-        // let stubContentSASS = fs.readFileSync(`src/stubs/angular/component.sass.stub`, 'utf8');
+    fs.mkdirSync(`${filePath}/${featureName}`, 755);
 
-        let generatedContent = stubContent.replace("{{StudlyName}}", _.capitalize(featureName));
+    let stubContent = fs.readFileSync(`src/stubs/angular/component/component.ts.stub`, 'utf8');
+    // let stubContentHTML = fs.readFileSync(`src/stubs/angular/component.html.stub`, 'utf8');
+    // let stubContentSASS = fs.readFileSync(`src/stubs/angular/component.sass.stub`, 'utf8');
 
-        let creatingPath = `${filePath}/${featureName}/${featureName}`;
-        console.log(`Creating file in ${creatingPath}`);
+    let generatedContent = stubContent.replace("{{StudlyName}}", _.capitalize(featureName));
 
-        fs.writeFile(`${creatingPath}.ts`, generatedContent, function(error) {
-          console.log(error);
-        });
+    let creatingPath = `${filePath}/${featureName}/${featureName}`;
+    console.log(`Creating file in ${creatingPath}`);
 
-        fsExtra.copy('src/stubs/angular/component/component.sass.stub', `${creatingPath}.sass`);
-        fsExtra.copy('src/stubs/angular/component/component.html.stub', `${creatingPath}.html`);
-      }
-    };
+    fs.writeFile(`${creatingPath}.ts`, generatedContent, function(error) {
+      console.log(error);
+    });
+
+    fsExtra.copy('src/stubs/angular/component/component.sass.stub', `${creatingPath}.sass`);
+    fsExtra.copy('src/stubs/angular/component/component.html.stub', `${creatingPath}.html`);
+  }
+};
