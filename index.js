@@ -1,12 +1,14 @@
 #!/usr/bin/env node
+"use strict";
+
 var argv = require('yargs').argv;
 var filehandler = require('./src/core/filehandler');
 
-var userInput = argv._[0].split(":");
+let userInput = argv._[0].split(":");
 
-var baseCommand = userInput[0];
-var secondaryCommand = userInput[1];
-var featureName = argv._[1];
+let baseCommand = userInput[0];
+let secondaryCommand = userInput[1];
+let featureName = argv._[1];
 
 if(baseCommand === "make"){
   switch(secondaryCommand){

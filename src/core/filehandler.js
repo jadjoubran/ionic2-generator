@@ -2,8 +2,12 @@ var fs = require('fs');
 var fsExtra = require('fs-sync');
 var _ = require("lodash");
 
+"use strict";
+
 module.exports = {
     createPage: (featureName, filePath, generatedType) => {
+      "use strict";
+
       var stubContent = '';
 
       stubContent = fs.readFileSync(`src/stubs/ionic/${generatedType}.ts.stub`, 'utf8');
@@ -18,20 +22,22 @@ module.exports = {
     },
 
     createComponent: (featureName, filePath) => {
+      "use strict";
+
       if (fsExtra.exists(`${filePath}/${featureName}`)) {
           console.log("Directory already exists!");
           return false;
         }
 
-        fs.mkdirSync(`${filePath}/${featureName}`, 0755);
+        fs.mkdirSync(`${filePath}/${featureName}`, 755);
 
-        var stubContent = fs.readFileSync(`src/stubs/angular/component/component.ts.stub`, 'utf8');
-        // var stubContentHTML = fs.readFileSync(`src/stubs/angular/component.html.stub`, 'utf8');
-        // var stubContentSASS = fs.readFileSync(`src/stubs/angular/component.sass.stub`, 'utf8');
+        let stubContent = fs.readFileSync(`src/stubs/angular/component/component.ts.stub`, 'utf8');
+        // let stubContentHTML = fs.readFileSync(`src/stubs/angular/component.html.stub`, 'utf8');
+        // let stubContentSASS = fs.readFileSync(`src/stubs/angular/component.sass.stub`, 'utf8');
 
-        var generatedContent = stubContent.replace("{{StudlyName}}", _.capitalize(featureName));
+        let generatedContent = stubContent.replace("{{StudlyName}}", _.capitalize(featureName));
 
-        var creatingPath = `${filePath}/${featureName}/${featureName}`;
+        let creatingPath = `${filePath}/${featureName}/${featureName}`;
         console.log(`Creating file in ${creatingPath}`);
 
         fs.writeFile(`${creatingPath}.ts`, generatedContent, function(error) {
