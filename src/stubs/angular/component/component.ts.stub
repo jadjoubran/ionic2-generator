@@ -1,0 +1,14 @@
+import {Component} from 'angular2/core';
+
+@Component({
+    selector: '{{StudlyName}}',
+    templateUrl: ''
+})
+
+export class {{StudlyName}}Component{
+    constructor(){
+        
+    }
+
+    
+}

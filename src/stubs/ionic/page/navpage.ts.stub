@@ -6,8 +6,12 @@ import {Page, NavController} from "ionic-angular";
 })
 
 export class {{StudlyName}}Page{
-    constructor(public nav: NavController, ){
+    constructor(public nav: NavController){
 
+    }
+
+    public goTo(){
+        //this.nav.push(NEW PAGE NAME);
     }
 
 
