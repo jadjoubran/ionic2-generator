@@ -1,31 +1,59 @@
-var fs = require('fs');
-var fsExtra = require('fs-sync');
 var _ = require("lodash");
+var fs = require('fs');
+// var fsExtra = require('fs-sync');
 
 var common = require('./common');
 
 module.exports = {
-  createComponent: (featureName, filePath) => {
+    createComponent: (featureName, filePath) => {
+        "use strict";
+
+        if (!common.directoryExists(filePath)) {
+            console.log("Please create it first.");
+            return false;
+        }
+
+        let creatingPath = `${filePath}/${featureName}`;
+
+        common.checkFileExists(creatingPath, featureName);
+
+        if (!common.directoryExists(creatingPath)) {
+            common.promptToCreateDir(featureName, creatingPath, '', component);
+            return true;
+        }
+
+        component(featureName, creatingPath);
+    }
+};
+
+function component(featureName, filePath) {
     "use strict";
 
-    common.checkDirectoryExists(filePath, featureName);
+    let stubContentTS = fs.readFileSync(`src/stubs/angular/component/component.ts.stub`, 'utf8');
+    let stubContentHTML = fs.readFileSync(`src/stubs/angular/component/component.html.stub`, 'utf8');
+    let stubContentSCSS = fs.readFileSync(`src/stubs/angular/component/component.scss.stub`, 'utf8');
 
-    fs.mkdirSync(`${filePath}/${featureName}`, 755);
+    let generatedContentTS = stubContentTS.replace("{{StudlyName}}", _.capitalize(featureName));
+    let generatedContentHTML = stubContentHTML.replace("{{StudlyName}}", _.capitalize(featureName));
+    let generatedContentSCSS = stubContentSCSS.replace("{{StudlyName}}", _.capitalize(featureName));
 
-    let stubContent = fs.readFileSync(`src/stubs/angular/component/component.ts.stub`, 'utf8');
-    // let stubContentHTML = fs.readFileSync(`src/stubs/angular/component.html.stub`, 'utf8');
-    // let stubContentSASS = fs.readFileSync(`src/stubs/angular/component.sass.stub`, 'utf8');
+    let fileCreatingPath = `${filePath}/${featureName}`;
 
-    let generatedContent = stubContent.replace("{{StudlyName}}", _.capitalize(featureName));
+    console.log(`Creating files in ${filePath}`);
 
-    let creatingPath = `${filePath}/${featureName}/${featureName}`;
-    console.log(`Creating file in ${creatingPath}`);
-
-    fs.writeFile(`${creatingPath}.ts`, generatedContent, function(error) {
-      console.log(error);
+    fs.writeFile(`${fileCreatingPath}.ts`, generatedContentTS, function(error) {
+        if (error) {
+            console.log(error);
+        }
     });
-
-    fsExtra.copy('src/stubs/angular/component/component.sass.stub', `${creatingPath}.sass`);
-    fsExtra.copy('src/stubs/angular/component/component.html.stub', `${creatingPath}.html`);
-  }
-};
+    fs.writeFile(`${fileCreatingPath}.html`, generatedContentHTML, function(error) {
+        if (error) {
+            console.log(error);
+        }
+    });
+    fs.writeFile(`${fileCreatingPath}.scss`, generatedContentSCSS, function(error) {
+        if (error) {
+            console.log(error);
+        }
+    });
+}
