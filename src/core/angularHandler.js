@@ -2,35 +2,13 @@ var fs = require('fs');
 var fsExtra = require('fs-sync');
 var _ = require("lodash");
 
+var common = require('./common');
+
 module.exports = {
-  createPage: (featureName, filePath, generatedType) => {
-    "use strict";
-
-    var stubContent = '';
-
-    stubContent = fs.readFileSync(`src/stubs/ionic/${generatedType}.ts.stub`, 'utf8');
-
-    var generatedContent = stubContent.replace("{{StudlyName}}", _.capitalize(featureName));
-
-    console.log(`Creating file in ${filePath}/`);
-
-    fs.writeFile(`${filePath}/${featureName}.ts`, generatedContent, function(error) {
-      console.log(error);
-    });
-  },
-
   createComponent: (featureName, filePath) => {
     "use strict";
 
-    if (!fsExtra.exists(`${filePath}`)) {
-      console.log("Directory doesnt' exist!", filePath);
-      return false;
-    }
-
-    if (fsExtra.exists(`${filePath}/${featureName}`)) {
-      console.log("Directory already exists!", `${filePath}/${featureName}`);
-      return false;
-    }
+    common.checkDirectoryExists(filePath, featureName);
 
     fs.mkdirSync(`${filePath}/${featureName}`, 755);
 
