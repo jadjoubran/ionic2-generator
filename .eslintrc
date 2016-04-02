@@ -38,22 +38,21 @@
     "no-unneeded-ternary": 1,
     "no-bitwise": 1,
     "yoda": 2,
-    "no-mixed-spaces-and-tabs": [2]
+    "no-mixed-spaces-and-tabs": [2],
+    "no-console": 0
   },
   "globals": {
-    "window": true,
     "require": true
   },
   "env": {
     "es6": true,
     "node": true
   },
-  "ecmaFeatures": {
-    "modules": true,
-    "impliedStrict": true
-  },
   "parserOptions": {
-    "ecmaVersion": 6
+    "ecmaVersion": 6,
+    "ecmaFeatures": {
+      "impliedStrict": true
+    }
   },
   "extends": "eslint:recommended",
 }
