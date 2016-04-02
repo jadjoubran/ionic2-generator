@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-"use strict";
 
 var argv = require('yargs').argv;
 var filehandler = require('./src/core/filehandler');
@@ -25,7 +24,7 @@ if(baseCommand === "make"){
     break;
 
     default:
-    console.log("Command not found! Please try again.");
+    window.console.log("Command not found! Please try again.");
     break;
   }
 }
