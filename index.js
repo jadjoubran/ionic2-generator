@@ -9,6 +9,8 @@ let baseCommand = userInput[0];
 let secondaryCommand = userInput[1];
 let featureName = argv._[1];
 
+var unused_variable = null;
+
 if(baseCommand === "make"){
   switch(secondaryCommand){
     case "page":
