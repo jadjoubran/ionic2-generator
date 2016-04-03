@@ -15,8 +15,9 @@ module.exports = {
 
         let creatingPath = `${filePath}/${featureName}`;
 
-        if (!common.directoryExists(creatingPath)) {
+        common.checkFileExists(creatingPath, featureName);
 
+        if (!common.directoryExists(creatingPath)) {
             common.promptToCreateDir(featureName, creatingPath, generatedType, page);
             return true;
         }

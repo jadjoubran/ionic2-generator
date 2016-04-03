@@ -17,8 +17,8 @@ module.exports = {
     checkFileExists: (filePath, featureName) => {
         "use strict";
 
-        if (fsExtra.exists(`${filePath}/${featureName}.ts`)) {
-            console.log("File already exists!", `${filePath}/${featureName}.ts`);
+        if (fsExtra.exists(`${filePath}/${featureName}.ts`) || fsExtra.exists(`${filePath}/${featureName}.html`) || fsExtra.exists(`${filePath}/${featureName}.scss`)) {
+            console.log("Files already exist!");
             process.exit(1);
         }
 
