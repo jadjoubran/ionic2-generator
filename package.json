@@ -1,6 +1,6 @@
 {
   "name": "i2g",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "Generator to create Ionic 2 Pages/Components and Angular 2 Components",
   "main": "index.js",
   "scripts": {
@@ -26,8 +26,10 @@
     "chai": "^3.5.0",
     "mocha": "^2.4.5"
   },
-  "licenses": [{
-    "type": "MIT",
-    "url": "https://github.com/jadsalhani/ionic2-generator/blob/master/LICENSE-MIT"
-  }]
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/jadsalhani/ionic2-generator/blob/master/LICENSE-MIT"
+    }
+  ]
 }
