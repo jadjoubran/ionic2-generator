@@ -1,6 +1,6 @@
 {
   "name": "i2g",
-  "version": "0.1.0",
+  "version": "0.9.0",
   "description": "Generator to create Ionic 2 Pages/Components and Angular 2 Components",
   "main": "index.js",
   "scripts": {
