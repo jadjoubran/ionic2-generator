@@ -2,7 +2,7 @@ var _ = require("lodash");
 var fs = require('fs');
 // var fsExtra = require('fs-sync');
 
-var common = require('./common');
+var common = require(__dirname + '/common');
 
 module.exports = {
     createPage: (featureName, filePath, generatedType) => {
@@ -15,7 +15,8 @@ module.exports = {
 
         let creatingPath = `${filePath}/${featureName}`;
 
-        if (!common.directoryExists(filePath)) {
+        if (!common.directoryExists(creatingPath)) {
+
             common.promptToCreateDir(featureName, creatingPath, generatedType, page);
             return true;
         }
@@ -27,9 +28,9 @@ module.exports = {
 function page(featureName, filePath, generatedType) {
     "use strict";
 
-    let stubContentTS = fs.readFileSync(`src/stubs/ionic/page/${generatedType}.ts.stub`, 'utf8');
-    let stubContentHTML = fs.readFileSync(`src/stubs/ionic/page/page.html.stub`, 'utf8');
-    let stubContentSCSS = fs.readFileSync(`src/stubs/ionic/page/page.scss.stub`, 'utf8');
+    let stubContentTS = fs.readFileSync(`${__dirname}/../stubs/ionic/page/${generatedType}.ts.stub`, 'utf8');
+    let stubContentHTML = fs.readFileSync(`${__dirname}/../stubs/ionic/page/page.html.stub`, 'utf8');
+    let stubContentSCSS = fs.readFileSync(`${__dirname}/../stubs/ionic/page/page.scss.stub`, 'utf8');
 
     let generatedContentTS = stubContentTS.replace("{{StudlyName}}", _.capitalize(featureName));
     let generatedContentHTML = stubContentHTML.replace("{{StudlyName}}", _.capitalize(featureName));

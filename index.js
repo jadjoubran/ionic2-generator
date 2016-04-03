@@ -3,8 +3,8 @@
 "use strict";
 
 var argv = require('yargs').argv;
-var ionicHandler = require('./src/core/ionicHandler');
-var angularHandler = require('./src/core/angularHandler');
+var ionicHandler = require(__dirname + '/src/core/ionicHandler');
+var angularHandler = require(__dirname + '/src/core/angularHandler');
 
 let userInput = argv._[0].split(":");
 

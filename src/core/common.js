@@ -24,7 +24,7 @@ module.exports = {
 
         return true;
     },
-    promptToCreateDir: (featureName, filePath, generatedType, flag, callback) => {
+    promptToCreateDir: (featureName, filePath, generatedType, callback) => {
         "use strict";
 
         prompt.start();

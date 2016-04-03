@@ -2,7 +2,7 @@ var _ = require("lodash");
 var fs = require('fs');
 // var fsExtra = require('fs-sync');
 
-var common = require('./common');
+var common = require(__dirname + '/common');
 
 module.exports = {
     createComponent: (featureName, filePath) => {
@@ -29,9 +29,9 @@ module.exports = {
 function component(featureName, filePath) {
     "use strict";
 
-    let stubContentTS = fs.readFileSync(`src/stubs/angular/component/component.ts.stub`, 'utf8');
-    let stubContentHTML = fs.readFileSync(`src/stubs/angular/component/component.html.stub`, 'utf8');
-    let stubContentSCSS = fs.readFileSync(`src/stubs/angular/component/component.scss.stub`, 'utf8');
+    let stubContentTS = fs.readFileSync(`${__dirname}/../stubs/angular/component/component.ts.stub`, 'utf8');
+    let stubContentHTML = fs.readFileSync(`${__dirname}/../stubs/angular/component/component.html.stub`, 'utf8');
+    let stubContentSCSS = fs.readFileSync(`${__dirname}/../stubs/angular/component/component.scss.stub`, 'utf8');
 
     let generatedContentTS = stubContentTS.replace("{{StudlyName}}", _.capitalize(featureName));
     let generatedContentHTML = stubContentHTML.replace("{{StudlyName}}", _.capitalize(featureName));
