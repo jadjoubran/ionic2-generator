@@ -1,4 +1,5 @@
 # Ionic 2 Generator
+===================
 
 Welcome to the Ionic 2 Generator! You might wonder why this is called an Ionic 2 generator when it contains Angular 2 components generations as well, but fret not all your questions shall be answered!
 
@@ -16,7 +17,7 @@ to have the generator globally available and voila! Creating Ionic pages and com
 
 ## Available commands
 
-This generator is very simple to use, and might be of liking to those used to the famous `artisan` commands
+This generator is very simple to use, and might be to the liking of those used to the famous `artisan` commands.
 
 ### Creating Ionic 2 Page Files
 
@@ -44,4 +45,4 @@ If you liked this generator and want to propose some improvements, feel free to 
 
 Just `git clone` the repository and run `npm install`
 
-Make sure to have `eslint` and `editorconfig` plugins installed to be conform the format and codestyle of the project
+Make sure to have `eslint` and `editorconfig` plugins installed to conform to the format and codestyle of the project
