@@ -1,5 +1,9 @@
 # Ionic 2 Generator
+
+[![Build Status](https://travis-ci.org/jadsalhani/ionic2-generator.svg?branch=master)](https://travis-ci.org/jadsalhani/ionic2-generator)
+
 ===================
+
 
 Welcome to the Ionic 2 Generator! You might wonder why this is called an Ionic 2 generator when it contains Angular 2 components generations as well, but fret not all your questions shall be answered!
 
