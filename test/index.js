@@ -1,4 +1,7 @@
+/*eslint-disable*/
+//Have to do this because we need to require to use the api but the variable itself is not used
 var should = require('chai').should(),
+/*eslint-enable*/
     base = process.env.PWD,
     ionicHandler = require(`${base}/src/core/ionichandler`),
     fsExtra = require('fs-sync');
