@@ -3,8 +3,8 @@
 "use strict";
 
 var argv = require('yargs').argv;
-var ionicHandler = require(__dirname + '/src/core/ionicHandler');
-var angularHandler = require(__dirname + '/src/core/angularHandler');
+var ionicHandler = require(__dirname + '/src/core/ionichandler');
+var angularHandler = require(__dirname + '/src/core/angularhandler');
 var helpText = require(__dirname + '/src/core/help');
 
 if (argv.help) {

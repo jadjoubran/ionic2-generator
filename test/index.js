@@ -1,6 +1,6 @@
 var should = require('chai').should(),
     base = process.env.PWD,
-    ionicHandler = require(`${base}/src/core/ionicHandler`),
+    ionicHandler = require(`${base}/src/core/ionichandler`),
     fsExtra = require('fs-sync');
 
 describe('Ionic page generation', function() {
