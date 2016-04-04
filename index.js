@@ -10,6 +10,7 @@ var helpText = require(__dirname + '/src/core/help');
 if (argv.help) {
     console.log(helpText);
     return true;
+
 }
 
 let userInput = argv._[0].split(":");
