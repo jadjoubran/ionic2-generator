@@ -5,6 +5,12 @@
 var argv = require('yargs').argv;
 var ionicHandler = require(__dirname + '/src/core/ionicHandler');
 var angularHandler = require(__dirname + '/src/core/angularHandler');
+var helpText = require(__dirname + '/src/core/help');
+
+if (argv.help) {
+    console.log(helpText);
+    return true;
+}
 
 let userInput = argv._[0].split(":");
 
