@@ -4,7 +4,7 @@
   "description": "Generator to create Ionic 2 Pages/Components and Angular 2 Components",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "author": "Jad Salhani",
   "license": "MIT",
