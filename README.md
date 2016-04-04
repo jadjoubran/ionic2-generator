@@ -19,6 +19,12 @@ to have the generator globally available and voila! Creating Ionic pages and com
 
 This generator is very simple to use, and might be to the liking of those used to the famous `artisan` commands.
 
+For any help while using the generator, just run
+
+`i2g --help`
+
+to see the available commands and what they do
+
 ### Creating Ionic 2 Page Files
 
 Generating the files has never been easier! Simply run 
