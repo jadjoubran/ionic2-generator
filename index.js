@@ -34,6 +34,10 @@ switch (baseCommand) {
                 angularHandler.createComponent(featureName, "./app/components");
                 break;
 
+            case "service":
+                angularHandler.createService(featureName, "./app/services");
+                break;
+
             default:
                 console.error("Command not found! Please try again.");
                 break;
