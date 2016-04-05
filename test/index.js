@@ -1,17 +1,19 @@
 /*eslint-disable*/
 //Have to do this because we need to require to use the api but the variable itself is not used
 var should = require('chai').should(),
-/*eslint-enable*/
+    expect = require('chai').expect,
+    /*eslint-enable*/
     base = process.env.PWD,
     ionicHandler = require(`${base}/src/core/ionichandler`),
     angularHandler = require(`${base}/src/core/angularhandler`),
     fsExtra = require('fs-sync');
 
-describe('Ionic page generation', function() {
+describe('File generation', function() {
 
     beforeEach(function() {
         fsExtra.mkdir(`${base}/app/pages/`);
         fsExtra.mkdir(`${base}/app/components/`);
+        fsExtra.mkdir(`${base}/app/services/`);
     });
 
     it('should create the page_name files', function() {
@@ -20,7 +22,7 @@ describe('Ionic page generation', function() {
         ionicHandler.createPage('login', "./app/pages", "page");
         var folderCreated = fsExtra.exists(`${base}/app/pages/login/`);
 
-        folderCreated.should.equal(true);
+        expect(folderCreated).to.be.true;
     });
 
     it('should create the component_name files', function() {
@@ -29,7 +31,14 @@ describe('Ionic page generation', function() {
         angularHandler.createComponent('login', "./app/components");
         var folderCreated = fsExtra.exists(`${base}/app/components/login/`);
 
-        folderCreated.should.equal(true);
+        expect(folderCreated).to.be.true;
+    });
+
+    it('should create the service_name file', function() {
+        angularHandler.createService('login', "./app/services");
+        var fileCreated = fsExtra.exists(`${base}/app/services/login.service.ts`);
+
+        expect(fileCreated).to.be.true;
     });
 
     it('should return false if the files already exist', function() {
@@ -38,7 +47,7 @@ describe('Ionic page generation', function() {
 
         var attemptWithExistingFiles = angularHandler.createComponent('login', "./app/components");
 
-        attemptWithExistingFiles.should.equal(false);
+        expect(attemptWithExistingFiles).to.be.false;
     });
 
     afterEach(function() {
