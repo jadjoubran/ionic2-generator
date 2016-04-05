@@ -14,15 +14,15 @@ module.exports = {
 
         return true;
     },
-    checkFileExists: (filePath, featureName) => {
+    fileExists: (filePath, featureName) => {
         "use strict";
 
-        if (fsExtra.exists(`${filePath}/${featureName}.ts`) || fsExtra.exists(`${filePath}/${featureName}.html`) || fsExtra.exists(`${filePath}/${featureName}.scss`)) {
+        if (fsExtra.exists(`${filePath}/${featureName}.*.ts`) || fsExtra.exists(`${filePath}/${featureName}.html`) || fsExtra.exists(`${filePath}/${featureName}.scss`)) {
             console.log("Files already exist!");
-            process.exit(1);
+            return true;
         }
 
-        return true;
+        return false;
     },
     promptToCreateDir: (featureName, filePath, generatedType, callback) => {
         "use strict";

@@ -15,7 +15,9 @@ module.exports = {
 
         let creatingPath = `${filePath}/${featureName}`;
 
-        common.checkFileExists(creatingPath, featureName);
+        if(common.fileExists(creatingPath, featureName)){
+            return false;
+        }
 
         if (!common.directoryExists(creatingPath)) {
             common.promptToCreateDir(featureName, creatingPath, '', component);
@@ -23,6 +25,7 @@ module.exports = {
         }
 
         component(featureName, creatingPath);
+        return true;
     }
 };
 
@@ -41,7 +44,7 @@ function component(featureName, filePath) {
 
     console.log(`Creating files in ${filePath}`);
 
-    fs.writeFile(`${fileCreatingPath}.ts`, generatedContentTS, function(error) {
+    fs.writeFile(`${fileCreatingPath}.component.ts`, generatedContentTS, function(error) {
         if (error) {
             console.log(error);
         }
