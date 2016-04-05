@@ -16,6 +16,10 @@ describe('File generation', function() {
         fsExtra.mkdir(`${base}/app/services/`);
     });
 
+    afterEach(function() {
+        fsExtra.remove(`${base}/app/`);
+    });
+
     it('should create the page_name files', function() {
         fsExtra.mkdir(`${base}/app/pages/login/`);
 
@@ -36,6 +40,7 @@ describe('File generation', function() {
 
     it('should create the service_name file', function() {
         angularHandler.createService('login', "./app/services");
+        console.log(fsExtra.exists(`${base}/app/services/login.service.ts`));
         var fileCreated = fsExtra.exists(`${base}/app/services/login.service.ts`);
 
         expect(fileCreated).to.be.true;
@@ -48,10 +53,6 @@ describe('File generation', function() {
         var attemptWithExistingFiles = angularHandler.createComponent('login', "./app/components");
 
         expect(attemptWithExistingFiles).to.be.false;
-    });
-
-    afterEach(function() {
-        fsExtra.remove(`${base}/app/`);
     });
 
 });
