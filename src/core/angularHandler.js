@@ -15,7 +15,7 @@ module.exports = {
 
         let creatingPath = `${filePath}/${featureName}`;
 
-        if(common.fileExists(creatingPath, featureName)){
+        if (common.fileExists(creatingPath, featureName)) {
             return false;
         }
 
@@ -25,6 +25,27 @@ module.exports = {
         }
 
         component(featureName, creatingPath);
+        return true;
+    },
+    createService: (featureName, filePath) => {
+        "use strict";
+
+        if (!common.directoryExists("./app")) {
+            console.log("Please create it first.");
+            return false;
+        }
+
+
+        if (common.fileExists(filePath, featureName)) {
+            return false;
+        }
+
+        if (!common.directoryExists(filePath)) {
+            common.promptToCreateDir(featureName, filePath, '', service);
+            return true;
+        }
+
+        service(featureName, filePath);
         return true;
     }
 };
@@ -55,6 +76,22 @@ function component(featureName, filePath) {
         }
     });
     fs.writeFile(`${fileCreatingPath}.scss`, generatedContentSCSS, function(error) {
+        if (error) {
+            console.log(error);
+        }
+    });
+}
+
+function service(featureName, filePath) {
+    "use strict";
+
+    let stubContentTS = fs.readFileSync(`${__dirname}/../stubs/angular/service/service.ts.stub`, 'utf8');
+
+    let generatedContentTS = stubContentTS.replace("{{StudlyName}}", _.capitalize(featureName));
+
+    console.log(`Creating files in ${filePath}`);
+
+    fs.writeFile(`${filePath}/${featureName}.service.ts`, generatedContentTS, function(error) {
         if (error) {
             console.log(error);
         }
