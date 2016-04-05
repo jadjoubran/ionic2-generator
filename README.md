@@ -1,6 +1,8 @@
 # Ionic 2 Generator
 
 [![Build Status](https://travis-ci.org/jadsalhani/ionic2-generator.svg?branch=master)](https://travis-ci.org/jadsalhani/ionic2-generator)
+[![downloads per day](https://img.shields.io/badge/downloads-20%2Fday-green.svg)](https://www.npmjs.org/package/i2g)
+
 
 ===================
 
