@@ -32,15 +32,13 @@ module.exports = {
 function page(featureName, filePath, generatedType) {
     "use strict";
 
-    let pageName = featureName.replace(/[-_]/, ' ');
-
     let stubContentTS = fs.readFileSync(`${__dirname}/../stubs/ionic/page/${generatedType}.ts.stub`, 'utf8');
     let stubContentHTML = fs.readFileSync(`${__dirname}/../stubs/ionic/page/page.html.stub`, 'utf8');
     let stubContentSCSS = fs.readFileSync(`${__dirname}/../stubs/ionic/page/page.scss.stub`, 'utf8');
 
     let generatedContentTS = stubContentTS.replace("{{StudlyName}}", _.capitalize(featureName));
     let generatedContentHTML = stubContentHTML.replace("{{StudlyName}}", _.capitalize(featureName));
-    generatedContentHTML = generatedContentHTML.replace("{{PageName}}", _.capitalize(pageName));
+    generatedContentHTML = generatedContentHTML.replace("{{PageName}}", _.upperCase(featureName));
     let generatedContentSCSS = stubContentSCSS.replace("{{StudlyName}}", _.capitalize(featureName));
 
     let fileCreatingPath = `${filePath}/${featureName}`;
